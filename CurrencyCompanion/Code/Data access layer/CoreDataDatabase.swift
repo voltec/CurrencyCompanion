@@ -35,6 +35,7 @@ class CoreDataDatabase: DatabaseProtocol {
         entity.baseCurrency = rate.baseCurrency
         entity.targetCurrency = rate.targetCurrency
         entity.rate = rate.rate
+        entity.lastUpdated = rate.lastUpdated
       }
     }
     do {
@@ -69,6 +70,6 @@ class CoreDataDatabase: DatabaseProtocol {
 
 private extension CurrencyRateEntity {
   func asCurrencyRate() -> CurrencyRate {
-      return CurrencyRate(baseCurrency: self.baseCurrency ?? "", targetCurrency: self.targetCurrency ?? "", rate: self.rate)
+    return CurrencyRate(baseCurrency: self.baseCurrency ?? "", targetCurrency: self.targetCurrency ?? "", rate: self.rate, lastUpdated: Date())
   }
 }

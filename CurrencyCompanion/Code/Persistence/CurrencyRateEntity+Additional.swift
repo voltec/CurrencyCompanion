@@ -14,8 +14,4 @@ extension CurrencyRateEntity {
     request.predicate = NSPredicate(format: "baseCurrency == %@ AND targetCurrency == %@", baseCurrency, targetCurrency)
     return request
   }
-  
-  public override func awakeFromInsert() {
-    self.date = Date()
-  }
 }

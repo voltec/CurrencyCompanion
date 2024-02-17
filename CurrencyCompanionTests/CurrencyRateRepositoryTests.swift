@@ -23,11 +23,11 @@ final class CurrencyRateRepositoryTests: XCTestCase {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
   }
 
-  func testfetchCurrencyRate_UsesCachedData() async {
+  func testfetchCurrencyRate_UsesCachedData() async throws {
     mockDatabase.shouldReturnRates = true
     mockDatabase.savedRates = [CurrencyRate(baseCurrency: "USD", targetCurrency: "EUR", rate: 0.9)]
 
-    let currencyRate = try! await repository.fetchCurrencyRate(
+    let currencyRate = try await repository.fetchCurrencyRate(
       baseCurrency: "USD",
       targetCurrency: "EUR",
       forceUpdate: false
@@ -37,10 +37,10 @@ final class CurrencyRateRepositoryTests: XCTestCase {
     XCTAssertEqual(currencyRate.rate, 0.9)
   }
 
-  func testfetchCurrencyRate_FetchesFromNetwork() async {
+  func testfetchCurrencyRate_FetchesFromNetwork() async throws {
     mockService.mockData = CurrencyRate(baseCurrency: "USD", targetCurrency: "EUR", rate: 0.85)
 
-    let currencyRate = try! await repository.fetchCurrencyRate(
+    let currencyRate = try await repository.fetchCurrencyRate(
       baseCurrency: "USD",
       targetCurrency: "EUR",
       forceUpdate: true

@@ -23,7 +23,7 @@ final class CoreDataDatabaseTests: XCTestCase {
     flushData()
   }
 
-  func testSaveCurrencyRates() async {
+  func testSaveCurrencyRates() async  {
     let ratesToSave: [CurrencyRate] = [
       CurrencyRate(baseCurrency: "USD", targetCurrency: "EUR", rate: 0.85),
       CurrencyRate(baseCurrency: "USD", targetCurrency: "GBP", rate: 0.72)
