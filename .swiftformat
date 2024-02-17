@@ -1,0 +1,20 @@
+--swiftversion 5.9
+--indent 2
+--tabwidth 2
+--ifdef no-indent
+
+--self remove
+--header ignore
+--ranges spaced
+--commas inline
+--linebreaks lf
+--semicolons inline
+--disable redundantParens
+
+--maxwidth 120
+--wraparguments before-first
+--wrapparameters after-first
+--wrapcollections before-first
+--wrapeffects if-multiline
+
+--exclude Pods,Packages
