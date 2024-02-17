@@ -98,8 +98,8 @@
 		3563C8BA2B81251800A2162C /* CurrencyCompanion */ = {
 			isa = PBXGroup;
 			children = (
-				3563C8EB2B81258200A2162C /* Resources */,
 				3563C8EA2B81257B00A2162C /* Code */,
+				3563C8EB2B81258200A2162C /* Resources */,
 			);
 			path = CurrencyCompanion;
 			sourceTree = "<group>";
@@ -133,12 +133,12 @@
 			isa = PBXGroup;
 			children = (
 				3563C8F12B81265900A2162C /* App */,
-				3563C8EC2B81259700A2162C /* Presentation */,
-				3563C8EF2B81263900A2162C /* Domain */,
 				3563C8ED2B81260800A2162C /* Data */,
+				3563C8EF2B81263900A2162C /* Domain */,
+				3563C8F22B81268500A2162C /* Persistence */,
+				3563C8EC2B81259700A2162C /* Presentation */,
 				3563C8EE2B81262800A2162C /* Service */,
 				3563C8F02B81264F00A2162C /* Utility */,
-				3563C8F22B81268500A2162C /* Persistence */,
 			);
 			path = Code;
 			sourceTree = "<group>";
