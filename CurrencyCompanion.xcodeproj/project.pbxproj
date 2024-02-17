@@ -31,6 +31,7 @@
 		3563C91F2B81678100A2162C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563C91E2B81678100A2162C /* Router.swift */; };
 		3563C9212B8167BE00A2162C /* CurrencyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563C9202B8167BE00A2162C /* CurrencyRouter.swift */; };
 		3563C9242B81686C00A2162C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563C9232B81686C00A2162C /* HistoryView.swift */; };
+		3563C9262B81764600A2162C /* UserSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563C9252B81764600A2162C /* UserSettingsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		3563C91E2B81678100A2162C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		3563C9202B8167BE00A2162C /* CurrencyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRouter.swift; sourceTree = "<group>"; };
 		3563C9232B81686C00A2162C /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		3563C9252B81764600A2162C /* UserSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				3563C8F62B812B5F00A2162C /* CurrencyRateService.swift */,
+				3563C9252B81764600A2162C /* UserSettingsManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				3563C9242B81686C00A2162C /* HistoryView.swift in Sources */,
 				3563C9212B8167BE00A2162C /* CurrencyRouter.swift in Sources */,
 				3563C9102B81537E00A2162C /* CurrencyRateViewModel.swift in Sources */,
+				3563C9262B81764600A2162C /* UserSettingsManager.swift in Sources */,
 				3563C91F2B81678100A2162C /* Router.swift in Sources */,
 				3563C8BC2B81251800A2162C /* CurrencyCompanionApp.swift in Sources */,
 				3563C8FA2B812B8F00A2162C /* CurrencyRate.swift in Sources */,

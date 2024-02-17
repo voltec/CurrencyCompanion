@@ -31,6 +31,7 @@ final class CurrencyRateViewModel: ObservableObject {
   }
 
   private let repository: CurrencyRateRepositoryProtocol
+  private let userSettingsStorage: UserSettingsStoring
 
   @Published var baseCurrency: Currency = .usd
   @Published var targetCurrency: Currency = .eur
@@ -41,24 +42,26 @@ final class CurrencyRateViewModel: ObservableObject {
 
   var error: ViewModelError?
   @Published var showsError: Bool = false
-  
+
   private var cancellables: Set<AnyCancellable> = []
 
-  init(repository: CurrencyRateRepositoryProtocol = DIContainer.shared.currencyRateRepository) {
-    self.repository = repository
+  init(diContainer: DIContainer = DIContainer.shared) {
+    repository = diContainer.currencyRateRepository
+    userSettingsStorage = diContainer.userSettingsStorage
+    loadSettings()
     startObservers()
   }
 
   func startObservers() {
     $baseCurrency
-      .combineLatest($targetCurrency)
-      .combineLatest($amount)
-      .sink { [unowned self] _, _ in
+      .combineLatest($targetCurrency, $amount)
+      .sink { [unowned self] baseCurrency, targetCurrency, amount in
+        saveSettings(base: baseCurrency, target: targetCurrency, amount: amount)
         convertAmount()
       }
       .store(in: &cancellables)
   }
-  
+
   private func showError(_ error: ViewModelError) {
     self.error = error
     showsError = true
@@ -66,7 +69,7 @@ final class CurrencyRateViewModel: ObservableObject {
 
   private func convertAmount() {
     guard let amountDouble = Float(amount), amountDouble > 0 else {
-      self.convertedAmount = nil
+      convertedAmount = nil
       return
     }
     isLoading = true
@@ -76,13 +79,13 @@ final class CurrencyRateViewModel: ObservableObject {
       isLoading = false
     }
   }
-  
+
   private func calculate(amount: Float) {
     guard let currencyRate else {
       showError(.failed)
       return
     }
-    self.convertedAmount = amount * currencyRate.rate
+    convertedAmount = amount * currencyRate.rate
   }
 
   private func updateRate() async {
@@ -92,5 +95,17 @@ final class CurrencyRateViewModel: ObservableObject {
       forceUpdate: false
     )
     currencyRate = rate
+  }
+
+  private func loadSettings() {
+    if let settings = userSettingsStorage.loadCurrency() {
+      baseCurrency = settings.baseCurrency
+      targetCurrency = settings.targetCurrency
+      amount = settings.amount
+    }
+  }
+
+  private func saveSettings(base: Currency, target: Currency, amount: String) {
+    userSettingsStorage.saveCurrency(baseCurrency: base, targetCurrency: target, amount: amount)
   }
 }

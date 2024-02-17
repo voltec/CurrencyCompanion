@@ -9,14 +9,17 @@ import SwiftUI
 
 struct CurrencyRateView: View {
   @StateObject private var viewModel = CurrencyRateViewModel()
+  @FocusState private var isTextFieldFocused: Bool
+
+  private let accentColor = Color(red: 138 / 255, green: 43 / 255, blue: 226 / 255)
 
   var body: some View {
     mainView
-    .alert(isPresented: $viewModel.showsError, error: viewModel.error, actions: {})
-    .padding()
-    .navigationTitle("Currency Converter")
+      .alert(isPresented: $viewModel.showsError, error: viewModel.error, actions: {})
+      .padding()
+      .navigationTitle("Currency Converter")
   }
-  
+
   private var mainView: some View {
     VStack {
       currencyPanel(title: "From", currency: $viewModel.baseCurrency)
@@ -24,7 +27,7 @@ struct CurrencyRateView: View {
       currencyPanel(title: "To", currency: $viewModel.targetCurrency)
 
       inputView
-      
+
       resultView
 
       Spacer()
@@ -43,18 +46,25 @@ struct CurrencyRateView: View {
       .pickerStyle(.segmented)
     }
     .padding()
-    .background(RoundedRectangle(cornerRadius: 8)
-      .stroke(lineWidth: 1)
-      .foregroundStyle(Color(red: 138 / 255, green: 43 / 255, blue: 226 / 255).opacity(0.5)))
+    .background(
+      RoundedRectangle(cornerRadius: 8)
+        .stroke(lineWidth: 1)
+        .foregroundStyle(accentColor.opacity(0.5))
+    )
   }
-  
+
   private var inputView: some View {
     TextField("Amount in \(viewModel.baseCurrency.rawValue)", text: $viewModel.amount)
       .keyboardType(.decimalPad)
-      .textFieldStyle(RoundedBorderTextFieldStyle())
-      .padding()
+      .focused($isTextFieldFocused)
+      .padding(10)
+      .background(Color.white)
+      .overlay(
+        RoundedRectangle(cornerRadius: 8)
+          .stroke(accentColor.opacity(isTextFieldFocused ? 1 : 0.2), lineWidth: 2)
+      )
   }
-  
+
   private var resultView: some View {
     VStack {
       if let rate = viewModel.currencyRate {
@@ -68,7 +78,7 @@ struct CurrencyRateView: View {
           }
         }
       }
-      
+
       if let convertedAmount = viewModel.convertedAmount {
         HStack(spacing: 0) {
           Text("Converted Amount: ")

@@ -48,12 +48,17 @@ extension DIContainer {
     inject(type: CurrencyRateRepositoryProtocol.self)
   }
 
+  var userSettingsStorage: UserSettingsStoring {
+    inject(type: UserSettingsStoring.self)
+  }
+
   func application() {
     // TODO: move to safe place
     let key = "fca_live_6OZRA9qjY37OUwoaOKUbWrOjund2jwm4262Tj9hZ"
     let currencyRateService: CurrencyRateServiceProtocol = CurrencyRateService(apiKey: key)
     let database = CoreDataDatabase(persistentContainer: PersistenceController.shared.container)
     let repository = CurrencyRateRepository(service: currencyRateService, database: database)
+    register(type: UserSettingsStoring.self, component: UserSettingsManager())
     register(type: DatabaseProtocol.self, component: database)
     register(type: CurrencyRateServiceProtocol.self, component: currencyRateService)
     register(type: CurrencyRateRepositoryProtocol.self, component: repository)
@@ -64,6 +69,7 @@ extension DIContainer {
     let currencyRateService: CurrencyRateServiceProtocol = MockConversionService()
     let database = CoreDataDatabase(persistentContainer: container)
     let repository = CurrencyRateRepository(service: currencyRateService, database: database)
+    register(type: UserSettingsStoring.self, component: UserSettingsManager())
     register(type: DatabaseProtocol.self, component: database)
     register(type: CurrencyRateServiceProtocol.self, component: currencyRateService)
     register(type: CurrencyRateRepositoryProtocol.self, component: repository)
