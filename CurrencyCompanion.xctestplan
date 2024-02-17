@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "CD3B5D35-D9DD-483F-BA64-29A26344F8E7",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:CurrencyCompanion.xcodeproj",
+      "identifier" : "3563C8B72B81251800A2162C",
+      "name" : "CurrencyCompanion"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:CurrencyCompanion.xcodeproj",
+        "identifier" : "3563C8CC2B81251B00A2162C",
+        "name" : "CurrencyCompanionTests"
+      }
+    }
+  ],
+  "version" : 1
+}
