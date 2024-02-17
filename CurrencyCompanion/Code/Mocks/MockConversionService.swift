@@ -5,10 +5,9 @@
 //  Created by Mikhail Mukminov on 17.02.2024.
 //
 
-@testable import CurrencyCompanion
 import Foundation
 
-class MockConversionService: ConversionServiceProtocol {
+class MockConversionService: CurrencyRateServiceProtocol {
   var mockData: CurrencyRate?
   var mockError: Error?
 

@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct CurrencyCompanionApp: App {
+  init() {
+    DIContainer.shared.application()
+  }
+
   var body: some Scene {
     WindowGroup {
-      CurrencyConversionView()
+      RootView()
     }
   }
 }

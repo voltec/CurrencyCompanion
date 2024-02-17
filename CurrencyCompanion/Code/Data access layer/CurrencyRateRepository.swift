@@ -22,11 +22,11 @@ class CurrencyRateRepository: CurrencyRateRepositoryProtocol {
     case currenciesNotFound
   }
 
-  private let service: ConversionServiceProtocol
+  private let service: CurrencyRateServiceProtocol
   private let database: DatabaseProtocol
   private let refreshInterval: TimeInterval
 
-  init(service: ConversionServiceProtocol, database: DatabaseProtocol, refreshInterval: TimeInterval = 60 * 1) {
+  init(service: CurrencyRateServiceProtocol, database: DatabaseProtocol, refreshInterval: TimeInterval = 60 * 1) {
     self.service = service
     self.database = database
     self.refreshInterval = refreshInterval

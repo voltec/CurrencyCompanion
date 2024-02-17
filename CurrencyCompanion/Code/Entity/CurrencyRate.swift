@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CurrencyRate {
+struct CurrencyRate: Equatable {
   let baseCurrency: String
   let targetCurrency: String
   let rate: Float

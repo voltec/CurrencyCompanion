@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol ConversionServiceProtocol {
+protocol CurrencyRateServiceProtocol {
   func fetchCurrencyRate(baseCurrency: String, targetCurrency: String) async throws -> CurrencyRate?
 }
 
-struct CurrencyRateService: ConversionServiceProtocol {
+struct CurrencyRateService: CurrencyRateServiceProtocol {
   let apiKey: String
   let baseURL = "https://api.freecurrencyapi.com/v1/latest"
 
