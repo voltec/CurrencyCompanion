@@ -76,8 +76,8 @@ struct CurrencyRateView: View {
             ProgressView()
               .progressViewStyle(.circular)
           } else {
-            Text("\(convertedAmount, specifier: "%.2f")")
-            Text("\(viewModel.targetCurrency.rawValue)")
+            Text("\(convertedAmount)")
+            Text(" \(viewModel.targetCurrency.rawValue)")
           }
         }
       }

@@ -86,16 +86,11 @@ final class CurrencyRateViewModel: ObservableObject {
   }
 
   private func updateRate() async {
-    do {
-      let rate = try await repository.fetchCurrencyRate(
-        baseCurrency: baseCurrency.rawValue,
-        targetCurrency: targetCurrency.rawValue,
-        forceUpdate: false
-      )
-      currencyRate = rate
-    } catch {
-      self.error = ViewModelError.failed
-      self.showsError = true
-    }
+    let rate = try? await repository.fetchCurrencyRate(
+      baseCurrency: baseCurrency.rawValue,
+      targetCurrency: targetCurrency.rawValue,
+      forceUpdate: false
+    )
+    currencyRate = rate
   }
 }
