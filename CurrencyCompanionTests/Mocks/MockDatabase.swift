@@ -17,10 +17,10 @@ class MockDatabase: DatabaseProtocol {
   }
 
   func getCurrencyRate(base: String, target: String) -> CurrencyRate? {
-    shouldReturnRates ? savedRates.filter({ $0.baseCurrency == base && $0.targetCurrency == target }).first : nil
+    shouldReturnRates ? savedRates.filter { $0.baseCurrency == base && $0.targetCurrency == target }.first : nil
   }
 
-  func hasCurrencyRate(base: String, target: String) -> Bool {
+  func hasCurrencyRate(base _: String, target _: String) -> Bool {
     shouldReturnRates
   }
 }

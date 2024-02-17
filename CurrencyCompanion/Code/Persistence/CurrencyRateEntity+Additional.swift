@@ -5,8 +5,8 @@
 //  Created by Mikhail Mukminov on 17.02.2024.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 extension CurrencyRateEntity {
   class func fetchRequest(baseCurrency: String, targetCurrency: String) -> NSFetchRequest<CurrencyRateEntity> {

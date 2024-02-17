@@ -12,7 +12,7 @@ class MockConversionService: ConversionServiceProtocol {
   var mockData: CurrencyRate?
   var mockError: Error?
 
-  func fetchCurrencyRate(baseCurrency: String, targetCurrency: String) async throws -> CurrencyRate? {
+  func fetchCurrencyRate(baseCurrency _: String, targetCurrency _: String) async throws -> CurrencyRate? {
     if let error = mockError {
       throw error
     }

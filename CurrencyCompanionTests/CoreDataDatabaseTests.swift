@@ -23,12 +23,12 @@ final class CoreDataDatabaseTests: XCTestCase {
     flushData()
   }
 
-  func testSaveCurrencyRates() async  {
+  func testSaveCurrencyRates() async {
     let ratesToSave: [CurrencyRate] = [
       CurrencyRate(baseCurrency: "USD", targetCurrency: "EUR", rate: 0.85),
       CurrencyRate(baseCurrency: "USD", targetCurrency: "GBP", rate: 0.72)
     ]
-    
+
     await database.saveCurrencyRates(rates: ratesToSave)
 
     XCTAssertTrue(database.hasCurrencyRate(base: "USD", target: "EUR"))
@@ -40,12 +40,12 @@ final class CoreDataDatabaseTests: XCTestCase {
       XCTAssertEqual(saved.rate, currency!.rate)
     }
   }
-  
+
   private func flushData() {
     let context = persisnenceContainer.viewContext
     let fetchRequest: NSFetchRequest<NSFetchRequestResult> = CurrencyRateEntity.fetchRequest()
     let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-    
+
     do {
       try context.execute(deleteRequest)
       try context.save()

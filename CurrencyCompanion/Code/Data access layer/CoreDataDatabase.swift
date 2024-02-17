@@ -28,7 +28,10 @@ class CoreDataDatabase: DatabaseProtocol {
     let context = persistentContainer.newBackgroundContext()
     await context.perform {
       for rate in rates {
-        let request = CurrencyRateEntity.fetchRequest(baseCurrency: rate.baseCurrency, targetCurrency: rate.targetCurrency)
+        let request = CurrencyRateEntity.fetchRequest(
+          baseCurrency: rate.baseCurrency,
+          targetCurrency: rate.targetCurrency
+        )
         request.fetchLimit = 1
         let results = try? context.fetch(request)
         let entity = results?.first ?? CurrencyRateEntity(context: context)
@@ -50,10 +53,10 @@ class CoreDataDatabase: DatabaseProtocol {
     request.fetchLimit = 1
     let context = viewContext
     let results = try? context.fetch(request)
-    
-    return results?.first.map({ $0.asCurrencyRate() })
+
+    return results?.first.map { $0.asCurrencyRate() }
   }
-  
+
   func hasCurrencyRate(base: String, target: String) -> Bool {
     let context = viewContext
     let request = CurrencyRateEntity.fetchRequest(baseCurrency: base, targetCurrency: target)
@@ -70,6 +73,11 @@ class CoreDataDatabase: DatabaseProtocol {
 
 private extension CurrencyRateEntity {
   func asCurrencyRate() -> CurrencyRate {
-    return CurrencyRate(baseCurrency: self.baseCurrency ?? "", targetCurrency: self.targetCurrency ?? "", rate: self.rate, lastUpdated: Date())
+    CurrencyRate(
+      baseCurrency: baseCurrency ?? "",
+      targetCurrency: targetCurrency ?? "",
+      rate: rate,
+      lastUpdated: Date()
+    )
   }
 }

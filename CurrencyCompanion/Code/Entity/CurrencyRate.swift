@@ -11,5 +11,5 @@ struct CurrencyRate {
   let baseCurrency: String
   let targetCurrency: String
   let rate: Float
-  var lastUpdated: Date = Date()
+  var lastUpdated: Date = .init()
 }
