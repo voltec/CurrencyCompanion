@@ -20,14 +20,14 @@ final class CurrencyRateServiceTests: XCTestCase {
     service = nil
   }
 
-  func testFetchCurrencyRates() async {
+  func testfetchCurrencyRate() async {
     do {
-      let rates = try await service.fetchCurrencyRates(baseCurrency: "USD", targetCurrencies: ["EUR"])
+      let rate = try await service.fetchCurrencyRate(baseCurrency: "USD", targetCurrency: "EUR")
 
-      XCTAssertFalse(rates.isEmpty)
+      XCTAssertNotNil(rate)
 
-      let containsEUR = rates.contains { $0.targetCurrency == "EUR" }
-      XCTAssertTrue(containsEUR)
+      XCTAssertEqual(rate?.baseCurrency, "USD")
+      XCTAssertEqual(rate?.targetCurrency, "EUR")
 
     } catch {
       XCTFail("Test failed with error: \(error)")

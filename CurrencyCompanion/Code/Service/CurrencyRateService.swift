@@ -8,16 +8,15 @@
 import Foundation
 
 protocol ConversionServiceProtocol {
-  func fetchCurrencyRates(baseCurrency: String, targetCurrencies: [String]) async throws -> [CurrencyRate]
+  func fetchCurrencyRate(baseCurrency: String, targetCurrency: String) async throws -> CurrencyRate?
 }
 
 struct CurrencyRateService: ConversionServiceProtocol {
   let apiKey: String
   let baseURL = "https://api.freecurrencyapi.com/v1/latest"
 
-  func fetchCurrencyRates(baseCurrency: String, targetCurrencies: [String]) async throws -> [CurrencyRate] {
-    let currenciesString = targetCurrencies.joined(separator: ",")
-    let urlString = "\(baseURL)?apikey=\(apiKey)&currencies=\(currenciesString)&base_currency=\(baseCurrency)"
+  func fetchCurrencyRate(baseCurrency: String, targetCurrency: String) async throws -> CurrencyRate? {
+    let urlString = "\(baseURL)?apikey=\(apiKey)&currencies=\(targetCurrency)&base_currency=\(baseCurrency)"
     guard let url = URL(string: urlString) else {
       throw NetworkError.invalidURL
     }
@@ -27,7 +26,7 @@ struct CurrencyRateService: ConversionServiceProtocol {
 
     return decodedResponse.data.map { targetCurrency, rate in
       CurrencyRate(baseCurrency: baseCurrency, targetCurrency: targetCurrency, rate: rate)
-    }
+    }.first
   }
 }
 
@@ -36,17 +35,5 @@ enum NetworkError: Error {
 }
 
 struct CurrencyRatesResponse: Codable {
-  let data: [String: Double]
-}
-
-class MockConversionService: ConversionServiceProtocol {
-  var mockData: [CurrencyRate]?
-  var mockError: Error?
-
-  func fetchCurrencyRates(baseCurrency _: String, targetCurrencies _: [String]) async throws -> [CurrencyRate] {
-    if let error = mockError {
-      throw error
-    }
-    return mockData ?? []
-  }
+  let data: [String: Float]
 }
