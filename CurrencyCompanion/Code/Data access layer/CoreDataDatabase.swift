@@ -10,8 +10,8 @@ import Foundation
 
 protocol DatabaseProtocol {
   func saveCurrencyRates(rates: [CurrencyRate]) async
-  func getCurrencyRate(base: String, target: String) -> CurrencyRate?
-  func hasCurrencyRate(base: String, target: String) -> Bool
+  func getCurrencyRate(base: String, target: String) async -> CurrencyRate?
+  func hasCurrencyRate(base: String, target: String) async -> Bool
 }
 
 class CoreDataDatabase: DatabaseProtocol {
@@ -48,7 +48,8 @@ class CoreDataDatabase: DatabaseProtocol {
     }
   }
 
-  func getCurrencyRate(base: String, target: String) -> CurrencyRate? {
+  @MainActor
+  func getCurrencyRate(base: String, target: String) async -> CurrencyRate? {
     let request = CurrencyRateEntity.fetchRequest(baseCurrency: base, targetCurrency: target)
     request.fetchLimit = 1
     let context = viewContext
@@ -56,8 +57,9 @@ class CoreDataDatabase: DatabaseProtocol {
 
     return results?.first.map { $0.asCurrencyRate() }
   }
-
-  func hasCurrencyRate(base: String, target: String) -> Bool {
+  
+  @MainActor
+  func hasCurrencyRate(base: String, target: String) async -> Bool {
     let context = viewContext
     let request = CurrencyRateEntity.fetchRequest(baseCurrency: base, targetCurrency: target)
     request.fetchLimit = 1

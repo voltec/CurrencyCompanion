@@ -12,11 +12,12 @@ struct RootView: View {
   var body: some View {
     NavigationStack(path: $router.navPath) {
       CurrencyRateView()
+        .environmentObject(router)
         .navigationBarTitleDisplayMode(.inline)
         .navigationDestination(for: CurrencyRouter.Destination.self) { destination in
           switch destination {
           case .history:
-            HistoryView()
+            ConversionHistoryView()
           }
         }
     }

@@ -31,6 +31,7 @@ final class CurrencyRateViewModel: ObservableObject {
   }
 
   private let repository: CurrencyRateRepositoryProtocol
+  private let conversionRepository: ConversionRepositoryProtocol
   private let userSettingsStorage: UserSettingsStoring
 
   @Published var baseCurrency: Currency = .usd
@@ -47,6 +48,7 @@ final class CurrencyRateViewModel: ObservableObject {
 
   init(diContainer: DIContainer = DIContainer.shared) {
     repository = diContainer.currencyRateRepository
+    conversionRepository = diContainer.conversionRepository
     userSettingsStorage = diContainer.userSettingsStorage
     loadSettings()
     startObservers()
@@ -85,7 +87,17 @@ final class CurrencyRateViewModel: ObservableObject {
       showError(.failed)
       return
     }
-    convertedAmount = amount * currencyRate.rate
+    let value = amount * currencyRate.rate
+    convertedAmount = value
+    Task {
+      await conversionRepository.saveConversion(Conversion(
+        baseCurrency: currencyRate.baseCurrency,
+        targetCurrency: currencyRate.targetCurrency,
+        amount: amount,
+        convertedAmount: value,
+        date: Date()
+      ))
+    }
   }
 
   private func updateRate() async {

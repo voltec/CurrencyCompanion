@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CurrencyRateView: View {
   @StateObject private var viewModel = CurrencyRateViewModel()
+  @EnvironmentObject private var router: CurrencyRouter
   @FocusState private var isTextFieldFocused: Bool
 
   private let accentColor = Color(red: 138 / 255, green: 43 / 255, blue: 226 / 255)
@@ -17,7 +18,21 @@ struct CurrencyRateView: View {
     mainView
       .alert(isPresented: $viewModel.showsError, error: viewModel.error, actions: {})
       .padding()
-      .navigationTitle("Currency Converter")
+      .toolbar {
+        ToolbarItem(placement: .principal) {
+          Text("CurrencyCompanion")
+            .font(.system(size: 22).weight(.semibold))
+            .tracking(0.66)
+            .frame(height: 30)
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+          Button {
+            router.navigate(to: .history)
+          } label: {
+            Text("History")
+          }
+        }
+      }
   }
 
   private var mainView: some View {

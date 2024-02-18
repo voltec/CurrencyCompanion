@@ -36,7 +36,7 @@ class CurrencyRateRepository: CurrencyRateRepositoryProtocol {
                          forceUpdate: Bool = false)
     async throws -> CurrencyRate
   {
-    var rate = database.getCurrencyRate(base: baseCurrency, target: targetCurrency)
+    var rate = await database.getCurrencyRate(base: baseCurrency, target: targetCurrency)
 
     if forceUpdate || rate == nil || (rate?.lastUpdated.timeIntervalSinceNow ?? 0) < -refreshInterval {
       rate = try await service.fetchCurrencyRate(baseCurrency: baseCurrency, targetCurrency: targetCurrency)

@@ -30,8 +30,11 @@
 		3563C91D2B81673700A2162C /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563C91C2B81673700A2162C /* RootView.swift */; };
 		3563C91F2B81678100A2162C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563C91E2B81678100A2162C /* Router.swift */; };
 		3563C9212B8167BE00A2162C /* CurrencyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563C9202B8167BE00A2162C /* CurrencyRouter.swift */; };
-		3563C9242B81686C00A2162C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563C9232B81686C00A2162C /* HistoryView.swift */; };
+		3563C9242B81686C00A2162C /* ConversionHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563C9232B81686C00A2162C /* ConversionHistoryView.swift */; };
 		3563C9262B81764600A2162C /* UserSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563C9252B81764600A2162C /* UserSettingsManager.swift */; };
+		3563C9282B817EEA00A2162C /* ConversionHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563C9272B817EEA00A2162C /* ConversionHistoryViewModel.swift */; };
+		3563C92A2B817F9C00A2162C /* ConversionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563C9292B817F9C00A2162C /* ConversionRepository.swift */; };
+		3563C92C2B817FD900A2162C /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563C92B2B817FD900A2162C /* Conversion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,8 +74,11 @@
 		3563C91C2B81673700A2162C /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		3563C91E2B81678100A2162C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		3563C9202B8167BE00A2162C /* CurrencyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRouter.swift; sourceTree = "<group>"; };
-		3563C9232B81686C00A2162C /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		3563C9232B81686C00A2162C /* ConversionHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionHistoryView.swift; sourceTree = "<group>"; };
 		3563C9252B81764600A2162C /* UserSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsManager.swift; sourceTree = "<group>"; };
+		3563C9272B817EEA00A2162C /* ConversionHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionHistoryViewModel.swift; sourceTree = "<group>"; };
+		3563C9292B817F9C00A2162C /* ConversionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionRepository.swift; sourceTree = "<group>"; };
+		3563C92B2B817FD900A2162C /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +194,7 @@
 			children = (
 				3563C8FE2B8133FA00A2162C /* CurrencyRateRepository.swift */,
 				3563C9002B8134A500A2162C /* CoreDataDatabase.swift */,
+				3563C9292B817F9C00A2162C /* ConversionRepository.swift */,
 			);
 			path = "Data access layer";
 			sourceTree = "<group>";
@@ -239,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				3563C8F92B812B8F00A2162C /* CurrencyRate.swift */,
+				3563C92B2B817FD900A2162C /* Conversion.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -274,7 +282,8 @@
 		3563C9222B81685B00A2162C /* History */ = {
 			isa = PBXGroup;
 			children = (
-				3563C9232B81686C00A2162C /* HistoryView.swift */,
+				3563C9232B81686C00A2162C /* ConversionHistoryView.swift */,
+				3563C9272B817EEA00A2162C /* ConversionHistoryViewModel.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -386,17 +395,20 @@
 				3563C9182B815B2800A2162C /* MockConversionService.swift in Sources */,
 				3563C8FF2B8133FA00A2162C /* CurrencyRateRepository.swift in Sources */,
 				3563C8C82B81251B00A2162C /* CurrencyCompanion.xcdatamodeld in Sources */,
+				3563C9282B817EEA00A2162C /* ConversionHistoryViewModel.swift in Sources */,
 				3563C90E2B81411D00A2162C /* CurrencyRateEntity+Additional.swift in Sources */,
-				3563C9242B81686C00A2162C /* HistoryView.swift in Sources */,
+				3563C9242B81686C00A2162C /* ConversionHistoryView.swift in Sources */,
 				3563C9212B8167BE00A2162C /* CurrencyRouter.swift in Sources */,
 				3563C9102B81537E00A2162C /* CurrencyRateViewModel.swift in Sources */,
 				3563C9262B81764600A2162C /* UserSettingsManager.swift in Sources */,
 				3563C91F2B81678100A2162C /* Router.swift in Sources */,
+				3563C92C2B817FD900A2162C /* Conversion.swift in Sources */,
 				3563C8BC2B81251800A2162C /* CurrencyCompanionApp.swift in Sources */,
 				3563C8FA2B812B8F00A2162C /* CurrencyRate.swift in Sources */,
 				3563C91A2B815B2800A2162C /* MockCurrencyRateRepository.swift in Sources */,
 				3563C9192B815B2800A2162C /* MockDatabase.swift in Sources */,
 				3563C9012B8134A500A2162C /* CoreDataDatabase.swift in Sources */,
+				3563C92A2B817F9C00A2162C /* ConversionRepository.swift in Sources */,
 				3563C8F52B81281300A2162C /* CurrencyRateView.swift in Sources */,
 				3563C91D2B81673700A2162C /* RootView.swift in Sources */,
 			);
